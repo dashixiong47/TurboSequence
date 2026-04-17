@@ -21,13 +21,16 @@ struct TURBOSEQUENCE_LF_API FDemoMeshInstance_Lf
 
 	float MinFadeExitTime = 0;
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="UE 网格 Actor", ToolTip="指定演示模式下生成的 UE Actor 实例。"))
 	TObjectPtr<AActor> Mesh;
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="骨骼组件列表", ToolTip="指定演示模式下需要同步的骨骼网格组件。"))
 	TArray<USkinnedMeshComponent*> SkinnedComponents;
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="Actor 连接组件", ToolTip="指定演示模式下使用的 TurboSequence 连接组件。"))
 	TObjectPtr<UTurboSequence_MeshActorConnection_Lf> ActorConnection;
 };
 
@@ -67,16 +70,20 @@ public:
 
 	virtual void OnPostManagerUpdated_GameThread(const float DeltaTime) override;
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="淡入淡出时间", ToolTip="设置 UE 网格和 TurboSequence 网格切换时的淡入淡出时长。"))
 	float FadeTime = 0.5f;
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="淡入淡出距离", ToolTip="设置开始切换到 UE 网格的距离阈值。"))
 	float FadeDistance = 1000;
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="Actor 生成旋转偏移", ToolTip="设置生成 UE Actor 时附加的旋转偏移。"))
 	FRotator ActorSpawnRotationOffset = FRotator(0, 0, 0);
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="再次淡化前最短时间", ToolTip="设置再次触发淡入淡出前的最短等待时间。"))
 	float MinTimeBeforeFadingAgain = 0;
 
 	float LastDeltaTime = 0;
@@ -84,7 +91,8 @@ public:
 	TMap<int32, FDemoMeshInstance_Lf> MeshesOpen;
 	TMap<int32, FDemoMeshInstance_Lf> MeshesClosed;
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="网格 Actor 类", ToolTip="指定演示模式下用于实例化的 UE Actor 类。"))
 	TSubclassOf<AActor> MeshActor = nullptr;
 
 	virtual bool CanShowUEMesh(const int32 MeshID, const float MeshDistanceToCamera, const int32 MeshClosedID,

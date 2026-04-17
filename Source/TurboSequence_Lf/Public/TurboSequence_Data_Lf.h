@@ -23,27 +23,34 @@ struct TURBOSEQUENCE_LF_API FCameraView_Lf
 {
 	GENERATED_BODY()
 
-	UPROPERTY(EditAnywhere, Category="Aspect")
+	UPROPERTY(EditAnywhere, Category="Aspect",
+		meta=(DisplayName="视口尺寸", ToolTip="设置摄像机视口的尺寸。"))
 	FVector2f ViewportSize = FVector2f::ZeroVector;
 
 	TOptional<EAspectRatioAxisConstraint> AspectRatioAxisConstraint;
 
-	UPROPERTY(EditAnywhere, Category="Aspect")
+	UPROPERTY(EditAnywhere, Category="Aspect",
+		meta=(DisplayName="视场角", ToolTip="设置摄像机的视场角。"))
 	float Fov = GET60_NUMBER;
 
-	UPROPERTY(EditAnywhere, Category="Aspect")
+	UPROPERTY(EditAnywhere, Category="Aspect",
+		meta=(DisplayName="近裁剪面", ToolTip="设置摄像机的近裁剪面距离。"))
 	float NearClipPlane = GET1_NUMBER;
 
-	UPROPERTY(EditAnywhere, Category="Aspect")
+	UPROPERTY(EditAnywhere, Category="Aspect",
+		meta=(DisplayName="远裁剪面", ToolTip="设置摄像机的远裁剪面距离。"))
 	float FarClipPlane = GET1000_NUMBER;
 
-	UPROPERTY(EditAnywhere, Category="Aspect")
+	UPROPERTY(EditAnywhere, Category="Aspect",
+		meta=(DisplayName="透视投影", ToolTip="设置该摄像机是否使用透视投影。"))
 	bool bIsPerspective = true;
 
-	UPROPERTY(EditAnywhere, Category="Aspect")
+	UPROPERTY(EditAnywhere, Category="Aspect",
+		meta=(DisplayName="正交宽度", ToolTip="设置正交投影模式下的宽度。"))
 	float OrthoWidth = GET10_NUMBER;
 
-	UPROPERTY(EditAnywhere, Category="Transform")
+	UPROPERTY(EditAnywhere, Category="Transform",
+		meta=(DisplayName="摄像机变换", ToolTip="设置摄像机的世界空间变换。"))
 	FTransform CameraTransform;
 
 	FPlane Planes_Internal[GET6_NUMBER];
@@ -81,10 +88,12 @@ struct TURBOSEQUENCE_LF_API FRenderData_Lf
 	{
 	}
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="渲染参考", ToolTip="指定该渲染数据对应的 Niagara 渲染参考资源。"))
 	TObjectPtr<UNiagaraSystem> RenderReference = nullptr;
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="材质列表", ToolTip="设置该渲染数据使用的材质列表。"))
 	TArray<TObjectPtr<UMaterialInterface>> Materials;
 
 	// ID
@@ -286,37 +295,48 @@ struct TURBOSEQUENCE_LF_API FAnimationMetaData_Lf
 	{
 	}
 
-	UPROPERTY(EditAnywhere, Category="Animation")
+	UPROPERTY(EditAnywhere, Category="Animation",
+		meta=(DisplayName="动画", ToolTip="指定该动画元数据对应的动画资源。"))
 	UAnimSequence* Animation = nullptr;
 
-	UPROPERTY(EditAnywhere, Category="Settings")
+	UPROPERTY(EditAnywhere, Category="Settings",
+		meta=(DisplayName="播放设置", ToolTip="设置该动画的播放参数。"))
 	FTurboSequence_AnimPlaySettings_Lf Settings;
 
-	UPROPERTY(EditAnywhere, Category="Current Frame")
+	UPROPERTY(EditAnywhere, Category="Current Frame",
+		meta=(DisplayName="动画时间", ToolTip="查看或设置该动画当前帧的播放时间。"))
 	float AnimationTime = GET0_NUMBER;
 
-	UPROPERTY(EditAnywhere, Category="Current Frame")
+	UPROPERTY(EditAnywhere, Category="Current Frame",
+		meta=(DisplayName="最终动画权重", ToolTip="查看或设置该动画当前帧的最终混合权重。"))
 	float FinalAnimationWeight = GET1_NUMBER;
 
-	UPROPERTY(EditAnywhere, Category="Current Frame")
+	UPROPERTY(EditAnywhere, Category="Current Frame",
+		meta=(DisplayName="动画权重时间", ToolTip="设置动画权重过渡持续时间。"))
 	float AnimationWeightTime = 0.25f;
 
-	UPROPERTY(EditAnywhere, Category="Current Frame")
+	UPROPERTY(EditAnywhere, Category="Current Frame",
+		meta=(DisplayName="动画权重开始时间", ToolTip="设置动画权重开始过渡的时间点。"))
 	float AnimationWeightStartTime = 0.25f;
 
-	UPROPERTY(EditAnywhere, Category="Current Frame")
+	UPROPERTY(EditAnywhere, Category="Current Frame",
+		meta=(DisplayName="动画移除时间", ToolTip="设置动画淡出移除的持续时间。"))
 	float AnimationRemoveTime = 0.25f;
 
-	UPROPERTY(EditAnywhere, Category="Current Frame")
+	UPROPERTY(EditAnywhere, Category="Current Frame",
+		meta=(DisplayName="动画移除开始时间", ToolTip="设置动画开始移除的时间点。"))
 	float AnimationRemoveStartTime = 0.25f;
 
-	UPROPERTY(EditAnywhere, Category="Animation")
+	UPROPERTY(EditAnywhere, Category="Animation",
+		meta=(DisplayName="循环播放", ToolTip="设置该动画是否循环播放。"))
 	bool bIsLoop = false;
 
-	UPROPERTY(EditAnywhere, Category="Animation")
+	UPROPERTY(EditAnywhere, Category="Animation",
+		meta=(DisplayName="旧动画标记", ToolTip="标记该动画是否已进入旧动画状态。"))
 	bool bIsOldAnimation = false;
 
-	UPROPERTY(EditAnywhere, Category="Animation")
+	UPROPERTY(EditAnywhere, Category="Animation",
+		meta=(DisplayName="层遮罩索引", ToolTip="设置该动画当前使用的层遮罩索引。"))
 	uint16 LayerMaskIndex = GET0_NUMBER;
 
 	bool bNeedRebuildAnimationLayers = false;
@@ -396,10 +416,12 @@ struct TURBOSEQUENCE_LF_API FRenderingMaterialKeyValue_Lf
 {
 	GENERATED_BODY()
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="源材质", ToolTip="指定需要被替换的源材质。"))
 	TObjectPtr<UMaterialInterface> MaterialKey;
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="目标材质", ToolTip="指定与源材质对应的替换目标材质。"))
 	TObjectPtr<UMaterialInterface> MaterialValue;
 };
 
@@ -408,13 +430,16 @@ struct TURBOSEQUENCE_LF_API FRenderingMaterialItem_Lf
 {
 	GENERATED_BODY()
 
-	UPROPERTY(VisibleAnywhere, Category="TurboSequence")
+	UPROPERTY(VisibleAnywhere, Category="TurboSequence",
+		meta=(DisplayName="Niagara 渲染器", ToolTip="查看该材质项绑定的 Niagara 组件。"))
 	TObjectPtr<UNiagaraComponent> NiagaraRenderer;
 	
-	UPROPERTY(VisibleAnywhere, Category="TurboSequence")
+	UPROPERTY(VisibleAnywhere, Category="TurboSequence",
+		meta=(DisplayName="ISM 渲染器", ToolTip="查看该材质项绑定的 Instanced Static Mesh 组件。"))
 	TObjectPtr<UInstancedStaticMeshComponent> IsmRenderer;
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="材质映射", ToolTip="配置该渲染项使用的材质替换映射。"))
 	TArray<FRenderingMaterialKeyValue_Lf> Materials;
 };
 
@@ -423,7 +448,8 @@ struct TURBOSEQUENCE_LF_API FRenderingMaterialMap_Lf
 {
 	GENERATED_BODY()
 
-	UPROPERTY(VisibleAnywhere, Category="TurboSequence")
+	UPROPERTY(VisibleAnywhere, Category="TurboSequence",
+		meta=(DisplayName="渲染器映射", ToolTip="查看材质哈希到渲染材质项的映射。"))
 	TMap<uint32, FRenderingMaterialItem_Lf> Renderer;
 };
 
@@ -432,11 +458,13 @@ struct TURBOSEQUENCE_LF_API FAnimationBlendSpaceData_Lf
 {
 	GENERATED_BODY()
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="采样点映射", ToolTip="设置 Blend Space 动画 ID 到采样索引的映射。"))
 	// < Animation ID | Sampler Index >
 	TMap<uint32, int32> Points;
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="当前位置", ToolTip="设置或查看 Blend Space 当前的混合位置。"))
 	FVector3f CurrentPosition = FVector3f::ZeroVector;
 
 	TArray<FBlendSampleData> CachedBlendSampleData;
@@ -468,7 +496,8 @@ struct TURBOSEQUENCE_LF_API FSkinnedMeshReferenceLodElement_Lf
 	{
 	}
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="静态网格", ToolTip="指定该 LOD 参考元素使用的静态网格。"))
 	TObjectPtr<UStaticMesh> Mesh;
 
 	uint32 SkinWeightOffset = GET0_NUMBER;
@@ -492,7 +521,8 @@ struct TURBOSEQUENCE_LF_API FSkinnedMeshReference_RenderThread_Lf
 {
 	GENERATED_BODY()
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="数据资产", ToolTip="指定该引用数据对应的 TurboSequence 网格资产。"))
 	TObjectPtr<UTurboSequence_MeshAsset_Lf> DataAsset;
 
 	// CPU Indices, GPU Indices > -> Only contains bones with skin weight and Lod with mesh
@@ -540,7 +570,8 @@ struct TURBOSEQUENCE_LF_API FSkinnedMeshReference_Lf : public FSkinnedMeshRefere
 
 	TMap<uint8, FSkinnedMeshReferenceLodElement_Lf> LevelOfDetails;
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="首个有效 LOD 网格", ToolTip="指定该引用数据中第一个有效的 LOD 静态网格。"))
 	TObjectPtr<UStaticMesh> FirstValidMeshLevelOfDetail;
 
 	uint16 NumCPUBones = GET0_NUMBER;
@@ -555,7 +586,8 @@ struct TURBOSEQUENCE_LF_API FSkinnedMeshReference_Lf : public FSkinnedMeshRefere
 	// < Material Hash | Data >
 	TMap<uint32, FRenderData_Lf> RenderData;
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="来源世界", ToolTip="记录该引用数据所属的世界对象。"))
 	TObjectPtr<UWorld> FromWorld = nullptr;
 };
 
@@ -583,7 +615,8 @@ struct TURBOSEQUENCE_LF_API FSkinnedMeshRuntime_RenderThread_Lf
 		DataAsset = Asset;
 	}
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="数据资产", ToolTip="指定该运行时网格实例对应的 TurboSequence 网格资产。"))
 	TObjectPtr<UTurboSequence_MeshAsset_Lf> DataAsset;
 
 	bool bIsVisible = true;
@@ -684,10 +717,12 @@ struct TURBOSEQUENCE_LF_API FSkinnedMeshRuntime_Lf : public FSkinnedMeshRuntime_
 
 	int64 LastFrameAnimationSolved = GET0_NUMBER;
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="足迹资产", ToolTip="指定该运行时网格实例使用的 Footprint 资产。"))
 	TObjectPtr<UTurboSequence_FootprintAsset_Lf> FootprintAsset;
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="Hybrid 网格实例", ToolTip="指定该运行时实例关联的 Hybrid Actor。"))
 	TObjectPtr<AActor> HybridMeshInstance;
 
 	bool bSpawnedHybridActor = false;
@@ -729,7 +764,8 @@ struct TURBOSEQUENCE_LF_API FAsyncTextureGenerationChunk_Lf
 
 	TMap<int32, bool> TestValue;
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="数据资产", ToolTip="指定该异步纹理生成块对应的网格资产。"))
 	TObjectPtr<UTurboSequence_MeshAsset_Lf> DataAsset;
 
 
@@ -782,7 +818,8 @@ struct TURBOSEQUENCE_LF_API FSkinnedMeshGlobalLibrary_RenderThread_Lf
 	TMap<int32, int32> MeshIDToGlobalIndex;
 
 	TMap<TObjectPtr<UTurboSequence_MeshAsset_Lf>, FSkinnedMeshReference_RenderThread_Lf> PerReferenceData;
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="引用数据键", ToolTip="查看渲染线程全局库中记录的引用数据资产键列表。"))
 	TArray<TObjectPtr<UTurboSequence_MeshAsset_Lf>> PerReferenceDataKeys;
 };
 
@@ -809,7 +846,8 @@ struct TURBOSEQUENCE_LF_API FSkinnedMeshGlobalLibrary_Lf
 
 	TMap<TObjectPtr<UTurboSequence_MeshAsset_Lf>, FSkinnedMeshReference_Lf> PerReferenceData;
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="引用数据键", ToolTip="查看全局库中记录的引用数据资产键列表。"))
 	TArray<TObjectPtr<UTurboSequence_MeshAsset_Lf>> PerReferenceDataKeys;
 
 	// -> Key -> < USkeleton | UTurboSequence_MeshAsset_Lf | UAnimSequence >

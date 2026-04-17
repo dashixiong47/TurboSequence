@@ -14,7 +14,7 @@ UClass* FTurboSequence_AnimLibraryAction_Lf::GetSupportedClass() const
 
 FText FTurboSequence_AnimLibraryAction_Lf::GetName() const
 {
-	return INVTEXT("Animation Library");
+	return INVTEXT("动画库");
 }
 
 FColor FTurboSequence_AnimLibraryAction_Lf::GetTypeColor() const

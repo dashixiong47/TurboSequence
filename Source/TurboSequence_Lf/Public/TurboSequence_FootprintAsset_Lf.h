@@ -12,16 +12,20 @@ struct TURBOSEQUENCE_LF_API FTurboSequence_MeshSyncData_Lf
 {
 	GENERATED_BODY()
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="同步目标网格", ToolTip="指定该同步配置要跟随的 TurboSequence 网格资产。"))
 	TObjectPtr<UTurboSequence_MeshAsset_Lf> SyncsTo = nullptr;
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="同步骨骼变换", ToolTip="启用后会同步骨骼变换数据。"))
 	bool bIsBoneTransformSync = false;
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="同步世界变换", ToolTip="启用后会同步世界空间变换。"))
 	bool bIsWorldTransformSync = false;
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="淡出时隐藏网格", ToolTip="启用后会在淡出过程中隐藏网格。"))
 	bool bHideMeshOnFade = false;
 };
 
@@ -36,7 +40,8 @@ class TURBOSEQUENCE_LF_API UTurboSequence_FootprintAsset_Lf : public UDataAsset
 public:
 	UTurboSequence_FootprintAsset_Lf();
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="同步数据", ToolTip="配置不同 Skinned Asset 对应的同步规则。"))
 	TMap<TObjectPtr<USkinnedAsset>, FTurboSequence_MeshSyncData_Lf> SyncData;
 
 	/**

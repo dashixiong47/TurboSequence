@@ -49,14 +49,17 @@ public:
 	// The Instance
 	inline static TObjectPtr<ATurboSequence_Manager_Lf> Instance;
 
-	UPROPERTY(VisibleAnywhere, Category="TurboSequence")
+	UPROPERTY(VisibleAnywhere, Category="TurboSequence",
+		meta=(DisplayName="根组件", ToolTip="查看 TurboSequence 管理器使用的根场景组件。"))
 	TObjectPtr<USceneComponent> Root;
 
-	UPROPERTY(VisibleAnywhere, Category="TurboSequence")
+	UPROPERTY(VisibleAnywhere, Category="TurboSequence",
+		meta=(DisplayName="渲染组件映射", ToolTip="查看每个 TurboSequence 网格资产对应的渲染组件映射。"))
 	// The Rendering Part needs Niagara to draw the meshes: 1 Draw Call per Mesh | 1 Draw Call per Material
 	TMap<TObjectPtr<UTurboSequence_MeshAsset_Lf>, FRenderingMaterialMap_Lf> RenderComponents;
 
-	UPROPERTY(VisibleAnywhere, Category="TurboSequence")
+	UPROPERTY(VisibleAnywhere, Category="TurboSequence",
+		meta=(DisplayName="全局数据", ToolTip="查看当前管理器绑定的 TurboSequence 全局数据对象。"))
 	// The Global Data which keeps track of internal Texture Data
 	TObjectPtr<UTurboSequence_GlobalData_Lf> GlobalData;
 
@@ -65,7 +68,8 @@ public:
 	inline static TMap<TObjectPtr<UTurboSequence_FootprintAsset_Lf>, int32> FootprintAssetsInUse;
 
 protected:
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="运行时线程上下文", ToolTip="设置或查看管理器当前使用的运行时线程上下文对象。"))
 	// The Current Thread Context, Please Call GetThreadContext()
 	TObjectPtr<UTurboSequence_ThreadContext_Lf> CurrentThreadContext_Runtime;
 

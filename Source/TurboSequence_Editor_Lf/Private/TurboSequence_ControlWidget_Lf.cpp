@@ -304,7 +304,7 @@ void UTurboSequence_ControlWidget_Lf::GenerateMeshesForAsset(
     if (DesktopPlatform && WantedMeshPath.IsEmpty())
     {
         const FString DefaultPath = FPaths::ProjectContentDir();
-        const FString Title = FString(TEXT("Directory for the LOD 0 Data"));
+        const FString Title = FString(TEXT("选择 LOD 资源输出目录"));
         FString DirectorySelected = FString("");
         if (DesktopPlatform->OpenDirectoryDialog(nullptr, Title, DefaultPath, DirectorySelected))
         {
@@ -317,8 +317,8 @@ void UTurboSequence_ControlWidget_Lf::GenerateMeshesForAsset(
             if (FPaths::FileExists(WantedMeshPath))
             {
                 // Create a confirmation dialog with "OK" and "Cancel" buttons
-                const FText MessageText = FText::FromString(TEXT("Mesh Already Exists, do you want override it?"));
-                const FText TitleText = FText::FromString(TEXT("Confirmation"));
+                const FText MessageText = FText::FromString(TEXT("目标网格资源已存在，是否覆盖？"));
+                const FText TitleText = FText::FromString(TEXT("确认覆盖"));
                 const EAppReturnType::Type ButtonClicked = FMessageDialog::Open(
                     EAppMsgType::OkCancel, MessageText, TitleText);
  
@@ -431,7 +431,7 @@ void UTurboSequence_ControlWidget_Lf::GenerateMeshesForAsset(
                 if (GIsEditor)
                 {
                     FNotificationInfo Info(FText::FromString(FString::Printf(
-                        TEXT("Successfully Converted %s"), *MeshAsset->ReferenceMeshNative->GetName())));
+                        TEXT("已成功转换 %s"), *MeshAsset->ReferenceMeshNative->GetName())));
                     Info.ExpireDuration = 8.0f;
                     Info.bUseLargeFont = false;
                     if (TSharedPtr<SNotificationItem> Notification = FSlateNotificationManager::Get().

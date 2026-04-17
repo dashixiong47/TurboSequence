@@ -19,7 +19,7 @@ void FTurboSequence_Editor_LfModule::StartupModule()
 
 	IAssetTools& AssetTools = FAssetToolsModule::GetModule().Get();
 	PluginAssetCategory = AssetTools.RegisterAdvancedAssetCategory(*FString(TEXT("Turbo Sequence")),
-	                                                               LOCTEXT("Turbo Sequence", "Turbo Sequence"));
+	                                                               LOCTEXT("Turbo Sequence", "TurboSequence"));
 
 	TurboSequence_MeshAssetTypeActions = MakeShared<FTurboSequence_MeshAssetAction_Lf>();
 	AssetTools.RegisterAssetTypeActions(TurboSequence_MeshAssetTypeActions.ToSharedRef());
@@ -61,32 +61,32 @@ void FTurboSequence_Editor_LfModule::ShutdownModule()
 void FTurboSequence_Editor_LfModule::AddMenu(FMenuBarBuilder& MenuBuilder)
 {
 	MenuBuilder.AddPullDownMenu(
-		LOCTEXT("TurboSequence_Lf_Menu", "Turbo Sequence"),
-		LOCTEXT("CrodwPlugin_Lf_MenuTooltipKey", "Opens useful tools for creating assets with the Turbo Sequence"),
+		LOCTEXT("TurboSequence_Lf_Menu", "TurboSequence"),
+		LOCTEXT("CrodwPlugin_Lf_MenuTooltipKey", "打开 TurboSequence 的编辑器工具和资源维护功能。"),
 		FNewMenuDelegate::CreateRaw(this, &FTurboSequence_Editor_LfModule::AddMenu_Widget),
-		*FString(TEXT("Turbo Sequence")),
-		*FString(TEXT("Turbo Sequence")));
+		*FString(TEXT("TurboSequence")),
+		*FString(TEXT("TurboSequence")));
 }
 
 void FTurboSequence_Editor_LfModule::AddMenu_Widget(class FMenuBuilder& MenuBuilder)
 {
 	MenuBuilder.AddMenuEntry(
-		LOCTEXT("TurboSequence_Lf_MenuEntry", "Control Panel"),
-		LOCTEXT("CrodwPlugin_Lf_MenuEntryTooltipKey", "Opens the Control Panel for the Character Creation"),
+		LOCTEXT("TurboSequence_Lf_MenuEntry_ControlPanel", "控制面板"),
+		LOCTEXT("CrodwPlugin_Lf_MenuEntryTooltipKey_ControlPanel", "打开 TurboSequence 控制面板。"),
 		FSlateIcon(),
 		FUIAction(FExecuteAction::CreateRaw(this, &FTurboSequence_Editor_LfModule::PluginButtonClicked)),
-		*FString(TEXT("Control Panel")),
+		*FString(TEXT("控制面板")),
 		EUserInterfaceActionType::Button,
-		*FString(TEXT("Control Panel")));
+		*FString(TEXT("控制面板")));
 	MenuBuilder.AddMenuEntry(
-		LOCTEXT("TurboSequence_Lf_MenuEntry", "Re-cache Mesh Assets"),
-		LOCTEXT("CrodwPlugin_Lf_MenuEntryTooltipKey",
-		        "Makes the asset see this editor as new Engine Version which makes it rebuild."),
+		LOCTEXT("TurboSequence_Lf_MenuEntry_Recache", "重建网格资产缓存"),
+		LOCTEXT("CrodwPlugin_Lf_MenuEntryTooltipKey_Recache",
+		        "将所有 Mesh Asset 标记为需要重新构建缓存。"),
 		FSlateIcon(),
 		FUIAction(FExecuteAction::CreateRaw(this, &FTurboSequence_Editor_LfModule::OnInvalidMeshAssetCaches)),
-		*FString(TEXT("Re-cache Mesh Assets")),
+		*FString(TEXT("重建网格资产缓存")),
 		EUserInterfaceActionType::Button,
-		*FString(TEXT("Re-cache Mesh Assets")));
+		*FString(TEXT("重建网格资产缓存")));
 }
 
 void FTurboSequence_Editor_LfModule::RepairMeshAssetAsync()
@@ -368,12 +368,12 @@ void FTurboSequence_Editor_LfModule::PluginButtonClicked() const
 		else
 		{
 			// Widget not found
-			UE_LOG(LogTemp, Warning, TEXT("Can't find widget derived from UTurboSequence_ControlWidget_Lf"));
+			UE_LOG(LogTemp, Warning, TEXT("未找到继承自 UTurboSequence_ControlWidget_Lf 的编辑器控件蓝图。"));
 		}
 	}
 	else
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Can't find widget ... that's pretty bad"));
+		UE_LOG(LogTemp, Warning, TEXT("未找到 TurboSequence 控制面板对应的编辑器控件资源。"));
 	}
 }
 
@@ -390,7 +390,7 @@ void FTurboSequence_Editor_LfModule::OnInvalidMeshAssetCaches() const
 
 	if (AssetData.Num())
 	{
-		UE_LOG(LogTurboSequence_Lf, Warning, TEXT("Re-Cache Turbo Sequence Mesh Assets"));
+		UE_LOG(LogTurboSequence_Lf, Warning, TEXT("开始重建 TurboSequence Mesh Asset 缓存。"));
 		for (const FAssetData& Asset : AssetData)
 		{
 			const TObjectPtr<UTurboSequence_MeshAsset_Lf> MeshAsset = Cast<UTurboSequence_MeshAsset_Lf>(
@@ -405,13 +405,13 @@ void FTurboSequence_Editor_LfModule::OnInvalidMeshAssetCaches() const
 			FTurboSequence_Helper_Lf::SaveAsset(MeshAsset);
 		}
 
-		UE_LOG(LogTurboSequence_Lf, Warning, TEXT("Done ... please close the editor and open it again."));
+		UE_LOG(LogTurboSequence_Lf, Warning, TEXT("处理完成，请关闭并重新打开编辑器。"));
 	}
 }
 
 void FTurboSequence_Editor_LfModule::OnFilesLoaded()
 {
-	UE_LOG(LogTurboSequence_Lf, Display, TEXT("Initialize Turbo Sequence"));
+	UE_LOG(LogTurboSequence_Lf, Display, TEXT("开始初始化 TurboSequence。"));
 	const FAssetRegistryModule& AssetRegistry = FModuleManager::LoadModuleChecked<
 		FAssetRegistryModule>("AssetRegistry");
 

@@ -25,7 +25,7 @@ FName UTurboSequence_NiagaraSettings_Lf::GetContainerName() const
 
 FName UTurboSequence_NiagaraSettings_Lf::GetCategoryName() const
 {
-	return TEXT("TurboSequence Lf Settings");
+	return TEXT("TurboSequence 设置");
 }
 
 FName UTurboSequence_NiagaraSettings_Lf::GetSectionName() const
@@ -36,13 +36,13 @@ FName UTurboSequence_NiagaraSettings_Lf::GetSectionName() const
 #if WITH_EDITOR
 FText UTurboSequence_NiagaraSettings_Lf::GetSectionText() const
 {
-	return LOCTEXT("UTurboSequence_RefSettings_Lf::GetSectionText", "Niagara");
+	return LOCTEXT("UTurboSequence_RefSettings_Lf::GetSectionText", "Niagara 设置");
 }
 
 FText UTurboSequence_NiagaraSettings_Lf::GetSectionDescription() const
 {
 	return LOCTEXT("UTurboSequence_RefSettings_Lf::GetSectionDescription",
-	               "Turbo Sequence is using Niagara to render the Instances, here can change settings for the niagara system");
+	               "TurboSequence 使用 Niagara 来渲染实例，这里可以调整 Niagara 系统相关设置。");
 }
 #endif
 

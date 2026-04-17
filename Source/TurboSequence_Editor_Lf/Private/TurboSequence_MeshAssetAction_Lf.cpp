@@ -14,7 +14,7 @@ UClass* FTurboSequence_MeshAssetAction_Lf::GetSupportedClass() const
 
 FText FTurboSequence_MeshAssetAction_Lf::GetName() const
 {
-	return INVTEXT("Mesh Asset");
+	return INVTEXT("网格资产");
 }
 
 FColor FTurboSequence_MeshAssetAction_Lf::GetTypeColor() const

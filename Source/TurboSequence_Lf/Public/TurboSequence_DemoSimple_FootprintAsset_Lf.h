@@ -13,13 +13,15 @@ struct TURBOSEQUENCE_LF_API FDemoMeshData_Lf
 {
 	GENERATED_BODY()
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="UE 网格组件", ToolTip="指定演示模式下用于显示的 UE 骨骼网格组件。"))
 	TObjectPtr<USkinnedMeshComponent> Mesh;
 
 	int8 FrameDelay = 0;
 	bool bIsUEVisible = false;
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="Actor 连接组件", ToolTip="指定演示模式下使用的 TurboSequence 连接组件。"))
 	TObjectPtr<UTurboSequence_MeshActorConnection_Lf> ActorConnection;
 };
 
@@ -34,10 +36,12 @@ public:
 
 	TMap<int32, FDemoMeshData_Lf> MeshDataCollection;
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="UE 网格 Actor 类", ToolTip="指定简单 Hybrid 演示要生成的 UE Actor 类。"))
 	TSubclassOf<AActor> UEMeshClass;
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="UE 网格显示距离", ToolTip="设置 UE 网格在摄像机附近显示的距离阈值。"))
 	float UEMeshShowDistance = 1000.0f;
 
 

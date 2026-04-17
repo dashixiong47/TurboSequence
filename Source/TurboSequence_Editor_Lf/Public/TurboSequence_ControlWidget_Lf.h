@@ -48,49 +48,49 @@
 UENUM(BlueprintType)
 enum class EShow_ControlPanel_Section_Lf : uint8
 {
-	None,
-	Welcome,
-	Reference,
-	Generate,
-	Tweaks
+	None UMETA(DisplayName="无"),
+	Welcome UMETA(DisplayName="欢迎"),
+	Reference UMETA(DisplayName="参考资源"),
+	Generate UMETA(DisplayName="生成"),
+	Tweaks UMETA(DisplayName="调整")
 };
 
 UENUM(BlueprintType)
 enum class EShow_ControlPanel_Buttons_Lf : uint8
 {
-	None,
-	Welcome,
-	Reference,
-	Generate,
-	Tweaks,
-	NextSection,
-	PreviousSection,
-	Docs,
-	Discord,
-	CreateLod,
-	TweakGlobalTexture
+	None UMETA(DisplayName="无"),
+	Welcome UMETA(DisplayName="欢迎"),
+	Reference UMETA(DisplayName="参考资源"),
+	Generate UMETA(DisplayName="生成"),
+	Tweaks UMETA(DisplayName="调整"),
+	NextSection UMETA(DisplayName="下一页"),
+	PreviousSection UMETA(DisplayName="上一页"),
+	Docs UMETA(DisplayName="文档"),
+	Discord UMETA(DisplayName="Discord"),
+	CreateLod UMETA(DisplayName="创建 LOD"),
+	TweakGlobalTexture UMETA(DisplayName="调整全局纹理")
 };
 
 UENUM(BlueprintType)
 enum class EShow_ControlPanel_Objects_Lf : uint8
 {
-	None,
-	Asset_Object,
-	Asset_SkeletalMesh,
-	Asset_SkeletalMesh_Reference
+	None UMETA(DisplayName="无"),
+	Asset_Object UMETA(DisplayName="资产对象"),
+	Asset_SkeletalMesh UMETA(DisplayName="骨骼网格"),
+	Asset_SkeletalMesh_Reference UMETA(DisplayName="骨骼网格参考")
 };
 
 UENUM(BlueprintType)
 enum class EShow_ControlPanel_Properties_Lf : uint8
 {
-	None,
-	Main_Asset,
-	Skeletal_Mesh,
-	Skeletal_Mesh_Reference,
-	MaxInstancedLevelOfDetails,
-	MeshDataModeToGenerate,
-	TweakGlobalTextureSection,
-	UseNaniteProperty
+	None UMETA(DisplayName="无"),
+	Main_Asset UMETA(DisplayName="主资产"),
+	Skeletal_Mesh UMETA(DisplayName="骨骼网格"),
+	Skeletal_Mesh_Reference UMETA(DisplayName="骨骼网格参考"),
+	MaxInstancedLevelOfDetails UMETA(DisplayName="最大实例化 LOD 数"),
+	MeshDataModeToGenerate UMETA(DisplayName="生成数据模式"),
+	TweakGlobalTextureSection UMETA(DisplayName="全局纹理调整"),
+	UseNaniteProperty UMETA(DisplayName="使用 Nanite")
 };
 
 /**
@@ -141,25 +141,31 @@ public:
 	void OnTick(float DeltaTime);
 
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="TurboSequence|编辑器工具",
+		meta=(DisplayName="主编辑资产", ToolTip="指定当前控制面板要编辑的 TurboSequence 网格资产。"))
 	TObjectPtr<UTurboSequence_MeshAsset_Lf> Main_Asset_To_Edit;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="TurboSequence|编辑器工具",
+		meta=(DisplayName="当前骨骼网格参考（只读源）", ToolTip="查看当前用于生成的原始骨骼网格参考。"))
 	TObjectPtr<USkeletalMesh> Current_SkeletalMesh_Reference_NoEdit;
 	
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="TurboSequence|编辑器工具",
+		meta=(DisplayName="启用 Nanite", ToolTip="设置生成资源时是否启用 Nanite 相关流程。"))
 	bool bUseNanite = true;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta=(ClampMin = "1", ClampMax = "32"), Category="TurboSequence")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, meta=(ClampMin = "1", ClampMax = "32", DisplayName="最大 LOD 数量", ToolTip="设置生成时允许创建的最大 LOD 数量。"), Category="TurboSequence|编辑器工具")
 	int32 MaxNumberOfLODs = 8;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="TurboSequence|编辑器工具",
+		meta=(DisplayName="网格数据模式", ToolTip="选择生成 TurboSequence 网格数据时采用的数据编码模式。"))
 	ETurboSequence_MeshDataMode_Lf MeshDataMode = ETurboSequence_MeshDataMode_Lf::UV;
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category="TurboSequence|编辑器工具",
+		meta=(DisplayName="当前骨骼网格参考", ToolTip="指定当前用于生成或替换的骨骼网格参考。"))
 	TObjectPtr<USkeletalMesh> Current_SkeletalMesh_Reference;
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence|编辑器工具",
+		meta=(DisplayName="细节层级列表", ToolTip="配置当前资产的各级 LOD 静态网格设置。"))
 	TArray<FMeshItem_Lf> LevelOfDetails;
 
 	UFUNCTION(BlueprintCallable, Category="TurboSequence")
@@ -334,22 +340,22 @@ public:
 	==============================================================================================================	*/
 
 	UPROPERTY(EditAnywhere, Config,
-		meta = (DisplayName = "Max Amount of Instances ( Including Customization Parts )", ClampMin = "100", ClampMax =
-			"200000"), Category="Texture Tweaking")
+		meta = (DisplayName = "最大实例数量（含自定义部件）", ToolTip="设置纹理预算中允许的最大实例数量，包含自定义部件。", ClampMin = "100", ClampMax =
+			"200000"), Category="纹理调整")
 	uint32 MaxNumMeshes = 20000;
 
 	UPROPERTY(EditAnywhere, Config,
-		meta = (DisplayName = "Max Amount of Bones In all Skeletons", ClampMin = "5", ClampMax = "200"),
-		Category="Texture Tweaking")
+		meta = (DisplayName = "所有骨架的最大骨骼数", ToolTip="设置纹理预算中允许的最大骨骼数量上限。", ClampMin = "5", ClampMax = "200"),
+		Category="纹理调整")
 	uint32 MaxNumBones = 75;
 
 	//UPROPERTY(EditAnywhere, Config, meta = (DisplayName = "Use high precision 32 bit Textures for Animations"), Category="Texture Tweaking")
 	//bool bUseHighPrecisionAnimationMode = true;
 
-	UPROPERTY(VisibleAnywhere, Config, meta = (DisplayName = "Allocated GPU Memory in MB"), Category="Texture Tweaking")
+	UPROPERTY(VisibleAnywhere, Config, meta = (DisplayName = "已分配 GPU 内存（MB）", ToolTip="查看当前纹理预算预计占用的 GPU 内存大小。"), Category="纹理调整")
 	uint32 AverageAllocatedMemory = 0;
 
-	UPROPERTY(EditAnywhere, Config, meta = (DisplayName = "Manually Adjust the Textures"), Category="Texture Tweaking")
+	UPROPERTY(EditAnywhere, Config, meta = (DisplayName = "手动调整纹理", ToolTip="启用后可手动控制 TurboSequence 纹理分配。"), Category="纹理调整")
 	bool bManuallyAdjustTextureSize = false;
 
 

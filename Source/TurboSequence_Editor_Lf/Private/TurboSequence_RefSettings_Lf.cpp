@@ -26,7 +26,7 @@ FName UTurboSequence_RefSettings_Lf::GetContainerName() const
 
 FName UTurboSequence_RefSettings_Lf::GetCategoryName() const
 {
-	return TEXT("TurboSequence Lf Settings");
+	return TEXT("TurboSequence 设置");
 }
 
 FName UTurboSequence_RefSettings_Lf::GetSectionName() const
@@ -37,13 +37,13 @@ FName UTurboSequence_RefSettings_Lf::GetSectionName() const
 #if WITH_EDITOR
 FText UTurboSequence_RefSettings_Lf::GetSectionText() const
 {
-	return LOCTEXT("UTurboSequence_RefSettings_Lf::GetSectionText", "Reference Paths");
+	return LOCTEXT("UTurboSequence_RefSettings_Lf::GetSectionText", "资源引用路径");
 }
 
 FText UTurboSequence_RefSettings_Lf::GetSectionDescription() const
 {
 	return LOCTEXT("UTurboSequence_RefSettings_Lf::GetSectionDescription",
-	               "The engine load on startup assets for TurboSequence, here it can get defined the paths");
+	               "引擎启动时会为 TurboSequence 加载默认资源，这里可以配置这些资源的引用路径。");
 }
 #endif
 

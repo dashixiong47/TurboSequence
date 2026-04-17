@@ -21,13 +21,16 @@ protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
 
-	UPROPERTY(VisibleAnywhere, Category="TurboSequence")
+	UPROPERTY(VisibleAnywhere, Category="TurboSequence",
+		meta=(DisplayName="Actor 网格数据 ID", ToolTip="查看当前 Actor 关联的 TurboSequence 网格数据 ID。"))
 	FTurboSequence_MinimalMeshData_Lf ActorTSMeshDataID;
 
-	UPROPERTY(VisibleAnywhere, Category="TurboSequence")
+	UPROPERTY(VisibleAnywhere, Category="TurboSequence",
+		meta=(DisplayName="足迹资产", ToolTip="查看当前连接组件关联的 Footprint 资产。"))
 	TObjectPtr<UTurboSequence_FootprintAsset_Lf> FootprintAsset;
 
-	UPROPERTY(EditAnywhere, Category="TurboSequence")
+	UPROPERTY(EditAnywhere, Category="TurboSequence",
+		meta=(DisplayName="骨骼网格组件", ToolTip="指定需要和 TurboSequence 联动的骨骼网格组件列表。"))
 	TArray<USkinnedMeshComponent*> SkinnedMeshComponents;
 
 public:
